@@ -1,0 +1,127 @@
+<html>
+    <head> <Title> Securii Dashboard </Title>
+         <link rel="icon" type="image/x-icon" href="favicon.png">
+        <style> 
+        body {
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: center;
+          background-size: cover;
+          background-color: #ffffff;
+          color:white;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        .center {
+            background-color: rgba(0,0,0);
+            padding: 70px 0;
+            border: 3px solid rgb(0, 0, 0);
+            text-align: center;
+            width: 600px;
+            margin: auto;
+            
+        }
+        fieldset{
+            background-color: #f1f1f1;
+            border: none;
+            border-radius: 2px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            padding: 0 .625em;
+        }
+
+        label{
+            cursor: pointer;
+            display: inline-block;
+            padding: 3px 6px;
+            text-align: right;
+            width: 150px;
+            vertical-align: top;
+        }
+
+        input{
+            font-size: inherit;
+        }
+        .btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 20px;
+  background: #ffffff;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+    background: #000000;
+  text-decoration: none;
+  color:#ffffff
+}
+.css-input {
+     padding: 10px;
+     font-size: 16px;
+     border-width: 1px;
+     border-color: #ffffff;
+     background-color: #000000;
+     color: #ffffff;
+     border-style: solid;
+     border-radius: 50px;
+     box-shadow: 0px 0px 5px rgba(66,66,66,.75);
+     text-shadow: -50px 0px 0px rgba(66,66,66,.0);
+}
+ .css-input:focus {
+     outline:none;
+}
+           
+        </style>
+
+        <script>
+            function validateForm() {
+              
+                let x = document.forms["apiform"]["add"].value;
+                let z = document.forms["apiform"]["token"].value;
+                let url = "https://securii-dashboard.herokuapp.com/scan/" + z + "/" + x;
+                fetch(url)
+                .then(res => res.json())
+                .then(json => alert(JSON.stringify(json)));
+
+
+
+    }
+
+    function transactionhis() {
+              
+              let x = document.forms["apiform"]["add"].value;
+              let url = "https://etherscan.io/txs?a="+x;
+              window.location.replace(url);
+
+
+  }
+        
+        
+        
+        </script>
+
+
+
+
+    </head>
+
+    <body background="bg.jpg"> 
+        <div class = center>
+            <img src = "favicon.png"  width="256" height="256">
+            <h1> Securii Search </h1>
+        <form name = "apiform" onsubmit="validateForm();return false" method="post" >
+            <input type="text" id="add" name="fadd" class="css-input" placeholder="Crypto Address"><br> <br>
+            <input type="text" id="token" name="ftoken" class="css-input" placeholder="Token ID"><br> <br>
+            <p>As of now we support BCH,BTC,ETH,LTC,USDC,USDT,XRP as our Tokens. For more details take a look at our  <a href="https://docs.securii.tech">Documentation</a></p>
+            
+            <input type="submit" class ="btn" value="Search">
+            <input type="button" class ="btn" value="Transaction History" onclick="transactionhis()">
+
+        </form>
+        </div>
+        
+    </body>
+</html>
